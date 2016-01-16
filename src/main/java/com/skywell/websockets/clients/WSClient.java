@@ -1,9 +1,14 @@
 package com.skywell.websockets.clients;
 
+import javax.net.ssl.*;
 import javax.websocket.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.*;
+import java.security.cert.X509Certificate;
 
 /**
  * Created by viv on 15.01.2016.
@@ -12,6 +17,7 @@ import java.net.URISyntaxException;
 public class WSClient {
 
     private static Object waitLock = new Object();
+
 
     @OnMessage
     public void onMessage(String message) {
@@ -28,6 +34,7 @@ public class WSClient {
     }
 
     public static void main(String[] args) {
+
         WebSocketContainer container;
         Session session = null;
         try {
